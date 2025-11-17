@@ -1,0 +1,184 @@
+query dengan WHERE dan BETWEEN
+
+Microsoft Windows [Version 10.0.26100.7171]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ASUS>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| d0224525           |
+| information_schema |
+| murid              |
+| mysql              |
+| paket              |
+| performance_schema |
+| phpmyadmin         |
+| tugas              |
+| uts_d0224525       |
++--------------------+
+9 rows in set (0.070 sec)
+
+MariaDB [(none)]> use tugas;
+Database changed
+
+MariaDB [tugas]> select * from peminjaman;
++---------------+---------+--------------+----------------+-----------------+
+| id_peminjaman | id_buku | id_mahasiswa | tanggal_pinjam | tanggal_kembali |
++---------------+---------+--------------+----------------+-----------------+
+|             1 |       1 |            2 | 2025-11-01     | 2025-11-08      |
+|             2 |       3 |            1 | 2025-11-02     | 2025-11-09      |
+|             3 |       5 |            4 | 2025-11-03     | 2025-11-10      |
+|             4 |       7 |            3 | 2025-11-03     | 2025-11-10      |
+|             5 |       2 |            5 | 2025-11-04     | 2025-11-11      |
+|             6 |       9 |            6 | 2025-11-05     | 2025-11-12      |
+|             7 |       4 |            7 | 2025-11-06     | 2025-11-13      |
+|             8 |       8 |            8 | 2025-11-07     | 2025-11-14      |
+|             9 |      10 |            9 | 2025-11-07     | 2025-11-15      |
+|            10 |       6 |           10 | 2025-11-08     | 2025-11-16      |
+|            11 |      11 |           11 | 2025-11-08     | 2025-11-17      |
+|            12 |      12 |           12 | 2025-11-09     | 2025-11-18      |
+|            13 |      13 |           13 | 2025-11-09     | 2025-11-18      |
+|            14 |      14 |           14 | 2025-11-10     | 2025-11-19      |
+|            15 |      15 |           15 | 2025-11-10     | 2025-11-20      |
++---------------+---------+--------------+----------------+-----------------+
+15 rows in set (0.074 sec)
+
+MariaDB [tugas]> select * from mahasiswa;
++--------------+-------+----------------+--------------------+--------------------+
+| id_mahasiswa | nim   | nama_lengkap   | alamat             | jurusan            |
++--------------+-------+----------------+--------------------+--------------------+
+|            1 | 23001 | Maya Putri     | Jl. Merpati No.5   | Teknik Informatika |
+|            2 | 23002 | Alan Fahrurozy | Jl. Kenanga No.9   | Teknik Informatika |
+|            3 | 23003 | Rizky Hidayat  | Jl. Mawar No.12    | Sistem Informasi   |
+|            4 | 23004 | Siti Rahma     | Jl. Melati No.3    | Teknik Komputer    |
+|            5 | 23005 | Budi Santoso   | Jl. Anggrek No.8   | Teknik Informatika |
+|            6 | 23006 | Dewi Lestari   | Jl. Flamboyan No.2 | Sistem Informasi   |
+|            7 | 23007 | Fajar Pratama  | Jl. Dahlia No.10   | Teknik Komputer    |
+|            8 | 23008 | Rina Wulandari | Jl. Teratai No.4   | Teknik Informatika |
+|            9 | 23009 | Yuda Saputra   | Jl. Melur No.6     | Sistem Informasi   |
+|           10 | 23010 | Putri Amelia   | Jl. Mawar No.7     | Teknik Informatika |
+|           11 | 23011 | Rafi Hidayat   | Jl. Cemara No.9    | Sistem Informasi   |
+|           12 | 23012 | Andi Kurniawan | Jl. Cempaka No.1   | Teknik Komputer    |
+|           13 | 23013 | Nisa Aulia     | Jl. Kenari No.2    | Teknik Informatika |
+|           14 | 23014 | Fani Pratiwi   | Jl. Mawar No.8     | Sistem Informasi   |
+|           15 | 23015 | Rizal Maulana  | Jl. Sakura No.11   | Teknik Komputer    |
++--------------+-------+----------------+--------------------+--------------------+
+15 rows in set (0.005 sec)
+
+MariaDB [tugas]> select * from buku;
++---------+-------------------------+--------------------------+--------------+-----------------+
+| id_buku | nama_buku               | pengarang                | tahun_terbit | penerbit        |
++---------+-------------------------+--------------------------+--------------+-----------------+
+|       1 | Laskar Pelangi          | Andrea Hirata            |         2005 | Bentang Pustaka |
+|       2 | Negeri 5 Menara         | Ahmad Fuadi              |         2009 | Gramedia        |
+|       3 | Bumi Manusia            | Pramoedya Ananta Toer    |         1980 | Hasta Mitra     |
+|       4 | Ayat-Ayat Cinta         | Habiburrahman El Shirazy |         2004 | Republika       |
+|       5 | Pulang                  | Tere Liye                |         2015 | Republika       |
+|       6 | Rindu                   | Tere Liye                |         2014 | Republika       |
+|       7 | Cinta Brontosaurus      | Raditya Dika             |         2006 | GagasMedia      |
+|       8 | Manusia Setengah Salmon | Raditya Dika             |         2011 | GagasMedia      |
+|       9 | Hujan                   | Tere Liye                |         2016 | Gramedia        |
+|      10 | Perahu Kertas           | Dee Lestari              |         2009 | Bentang Pustaka |
+|      11 | Cantik Itu Luka         | Eka Kurniawan            |         2002 | Gramedia        |
+|      12 | Sang Pemimpi            | Andrea Hirata            |         2006 | Bentang Pustaka |
+|      13 | Bulan                   | Tere Liye                |         2016 | Gramedia        |
+|      14 | Orang-orang Biasa       | Andrea Hirata            |         2019 | Bentang Pustaka |
+|      15 | Rectoverso              | Dee Lestari              |         2008 | Bentang Pustaka |
++---------+-------------------------+--------------------------+--------------+-----------------+
+15 rows in set (0.010 sec)
+
+MariaDB [tugas]> SELECT * FROM mahasiswa
+    -> WHERE jurusan = 'Teknik Informatika';
++--------------+-------+----------------+------------------+--------------------+
+| id_mahasiswa | nim   | nama_lengkap   | alamat           | jurusan            |
++--------------+-------+----------------+------------------+--------------------+
+|            1 | 23001 | Maya Putri     | Jl. Merpati No.5 | Teknik Informatika |
+|            2 | 23002 | Alan Fahrurozy | Jl. Kenanga No.9 | Teknik Informatika |
+|            5 | 23005 | Budi Santoso   | Jl. Anggrek No.8 | Teknik Informatika |
+|            8 | 23008 | Rina Wulandari | Jl. Teratai No.4 | Teknik Informatika |
+|           10 | 23010 | Putri Amelia   | Jl. Mawar No.7   | Teknik Informatika |
+|           13 | 23013 | Nisa Aulia     | Jl. Kenari No.2  | Teknik Informatika |
++--------------+-------+----------------+------------------+--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tugas]> SELECT * FROM buku
+    -> WHERE pengarang = 'Tere Liye';
++---------+-----------+-----------+--------------+-----------+
+| id_buku | nama_buku | pengarang | tahun_terbit | penerbit  |
++---------+-----------+-----------+--------------+-----------+
+|       5 | Pulang    | Tere Liye |         2015 | Republika |
+|       6 | Rindu     | Tere Liye |         2014 | Republika |
+|       9 | Hujan     | Tere Liye |         2016 | Gramedia  |
+|      13 | Bulan     | Tere Liye |         2016 | Gramedia  |
++---------+-----------+-----------+--------------+-----------+
+4 rows in set (0.001 sec)
+
+MariaDB [tugas]> SELECT p.*, m.nama_lengkap
+    -> FROM peminjaman p
+    -> JOIN mahasiswa m ON p.id_mahasiswa = m.id_mahasiswa
+    -> WHERE m.nama_lengkap = 'Maya Putri';
++---------------+---------+--------------+----------------+-----------------+--------------+
+| id_peminjaman | id_buku | id_mahasiswa | tanggal_pinjam | tanggal_kembali | nama_lengkap |
++---------------+---------+--------------+----------------+-----------------+--------------+
+|             2 |       3 |            1 | 2025-11-02     | 2025-11-09      | Maya Putri   |
++---------------+---------+--------------+----------------+-----------------+--------------+
+1 row in set (0.000 sec)
+
+MariaDB [tugas]> SELECT * FROM buku
+    -> WHERE tahun_terbit BETWEEN 2005 AND 2010;
++---------+--------------------+---------------+--------------+-----------------+
+| id_buku | nama_buku          | pengarang     | tahun_terbit | penerbit        |
++---------+--------------------+---------------+--------------+-----------------+
+|       1 | Laskar Pelangi     | Andrea Hirata |         2005 | Bentang Pustaka |
+|       2 | Negeri 5 Menara    | Ahmad Fuadi   |         2009 | Gramedia        |
+|       7 | Cinta Brontosaurus | Raditya Dika  |         2006 | GagasMedia      |
+|      10 | Perahu Kertas      | Dee Lestari   |         2009 | Bentang Pustaka |
+|      12 | Sang Pemimpi       | Andrea Hirata |         2006 | Bentang Pustaka |
+|      15 | Rectoverso         | Dee Lestari   |         2008 | Bentang Pustaka |
++---------+--------------------+---------------+--------------+-----------------+
+6 rows in set (0.000 sec)
+
+MariaDB [tugas]> SELECT * FROM peminjaman
+    -> WHERE tanggal_pinjam BETWEEN '2025-11-03' AND '2025-11-08';
++---------------+---------+--------------+----------------+-----------------+
+| id_peminjaman | id_buku | id_mahasiswa | tanggal_pinjam | tanggal_kembali |
++---------------+---------+--------------+----------------+-----------------+
+|             3 |       5 |            4 | 2025-11-03     | 2025-11-10      |
+|             4 |       7 |            3 | 2025-11-03     | 2025-11-10      |
+|             5 |       2 |            5 | 2025-11-04     | 2025-11-11      |
+|             6 |       9 |            6 | 2025-11-05     | 2025-11-12      |
+|             7 |       4 |            7 | 2025-11-06     | 2025-11-13      |
+|             8 |       8 |            8 | 2025-11-07     | 2025-11-14      |
+|             9 |      10 |            9 | 2025-11-07     | 2025-11-15      |
+|            10 |       6 |           10 | 2025-11-08     | 2025-11-16      |
+|            11 |      11 |           11 | 2025-11-08     | 2025-11-17      |
++---------------+---------+--------------+----------------+-----------------+
+9 rows in set (0.001 sec)
+
+MariaDB [tugas]> SELECT * FROM mahasiswa
+    -> WHERE id_mahasiswa BETWEEN 5 AND 10;
++--------------+-------+----------------+--------------------+--------------------+
+| id_mahasiswa | nim   | nama_lengkap   | alamat             | jurusan            |
++--------------+-------+----------------+--------------------+--------------------+
+|            5 | 23005 | Budi Santoso   | Jl. Anggrek No.8   | Teknik Informatika |
+|            6 | 23006 | Dewi Lestari   | Jl. Flamboyan No.2 | Sistem Informasi   |
+|            7 | 23007 | Fajar Pratama  | Jl. Dahlia No.10   | Teknik Komputer    |
+|            8 | 23008 | Rina Wulandari | Jl. Teratai No.4   | Teknik Informatika |
+|            9 | 23009 | Yuda Saputra   | Jl. Melur No.6     | Sistem Informasi   |
+|           10 | 23010 | Putri Amelia   | Jl. Mawar No.7     | Teknik Informatika |
++--------------+-------+----------------+--------------------+--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [tugas]>
