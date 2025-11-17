@@ -1,0 +1,155 @@
+Tugas p.web 
+membuat databases & bikin 3 tabel dengan minimal insert 15 data:
+
+Microsoft Windows [Version 10.0.26100.6899]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\ASUS>cd C:\xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| d0224525           |
+| information_schema |
+| murid              |
+| mysql              |
+| paket              |
+| performance_schema |
+| phpmyadmin         |
+| uts_d0224525       |
++--------------------+
+8 rows in set (0.056 sec)
+
+MariaDB [(none)]> create database tugas;
+Query OK, 1 row affected (0.020 sec)
+
+MariaDB [(none)]> use tugas;
+Database changed
+
+MariaDB [tugas]> CREATE TABLE buku (
+    ->     id_buku INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nama_buku VARCHAR(100),
+    ->     pengarang VARCHAR(100),
+    ->     tahun_terbit YEAR,
+    ->     penerbit VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.016 sec)
+
+MariaDB [tugas]> CREATE TABLE mahasiswa (
+    ->     id_mahasiswa INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nim VARCHAR(15),
+    ->     nama_lengkap VARCHAR(100),
+    ->     alamat VARCHAR(150),
+    ->     jurusan VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.022 sec)
+
+MariaDB [tugas]> CREATE TABLE peminjaman (
+    ->     id_peminjaman INT AUTO_INCREMENT PRIMARY KEY,
+    ->     id_buku INT,
+    ->     id_mahasiswa INT,
+    ->     tanggal_pinjam DATE,
+    ->     tanggal_kembali DATE,
+    ->     FOREIGN KEY (id_buku) REFERENCES buku(id_buku),
+    ->     FOREIGN KEY (id_mahasiswa) REFERENCES mahasiswa(id_mahasiswa)
+    -> );
+Query OK, 0 rows affected (0.045 sec)
+
+MariaDB [tugas]> INSERT INTO buku (nama_buku, pengarang, tahun_terbit, penerbit) VALUES
+    -> ('Laskar Pelangi', 'Andrea Hirata', 2005, 'Bentang Pustaka'),
+    -> ('Negeri 5 Menara', 'Ahmad Fuadi', 2009, 'Gramedia'),
+    -> ('Bumi Manusia', 'Pramoedya Ananta Toer', 1980, 'Hasta Mitra'),
+    -> ('Ayat-Ayat Cinta', 'Habiburrahman El Shirazy', 2004, 'Republika'),
+    -> ('Pulang', 'Tere Liye', 2015, 'Republika'),
+    -> ('Rindu', 'Tere Liye', 2014, 'Republika'),
+    -> ('Cinta Brontosaurus', 'Raditya Dika', 2006, 'GagasMedia'),
+    -> ('Manusia Setengah Salmon', 'Raditya Dika', 2011, 'GagasMedia'),
+    -> ('Hujan', 'Tere Liye', 2016, 'Gramedia'),
+    -> ('Perahu Kertas', 'Dee Lestari', 2009, 'Bentang Pustaka'),
+    -> ('Cantik Itu Luka', 'Eka Kurniawan', 2002, 'Gramedia'),
+    -> ('Sang Pemimpi', 'Andrea Hirata', 2006, 'Bentang Pustaka'),
+    -> ('Bulan', 'Tere Liye', 2016, 'Gramedia'),
+    -> ('Orang-orang Biasa', 'Andrea Hirata', 2019, 'Bentang Pustaka'),
+    -> ('Rectoverso', 'Dee Lestari', 2008, 'Bentang Pustaka');
+Query OK, 15 rows affected (0.072 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [tugas]> INSERT INTO mahasiswa (nim, nama_lengkap, alamat, jurusan) VALUES
+    -> ('23001', 'Maya Putri', 'Jl. Merpati No.5', 'Teknik Informatika'),
+    -> ('23002', 'Alan Fahrurozy', 'Jl. Kenanga No.9', 'Teknik Informatika'),
+    -> ('23003', 'Rizky Hidayat', 'Jl. Mawar No.12', 'Sistem Informasi'),
+    -> ('23004', 'Siti Rahma', 'Jl. Melati No.3', 'Teknik Komputer'),
+    -> ('23005', 'Budi Santoso', 'Jl. Anggrek No.8', 'Teknik Informatika'),
+    -> ('23006', 'Dewi Lestari', 'Jl. Flamboyan No.2', 'Sistem Informasi'),
+    -> ('23007', 'Fajar Pratama', 'Jl. Dahlia No.10', 'Teknik Komputer'),
+    -> ('23008', 'Rina Wulandari', 'Jl. Teratai No.4', 'Teknik Informatika'),
+    -> ('23009', 'Yuda Saputra', 'Jl. Melur No.6', 'Sistem Informasi'),
+    -> ('23010', 'Putri Amelia', 'Jl. Mawar No.7', 'Teknik Informatika'),
+    -> ('23011', 'Rafi Hidayat', 'Jl. Cemara No.9', 'Sistem Informasi'),
+    -> ('23012', 'Andi Kurniawan', 'Jl. Cempaka No.1', 'Teknik Komputer'),
+    -> ('23013', 'Nisa Aulia', 'Jl. Kenari No.2', 'Teknik Informatika'),
+    -> ('23014', 'Fani Pratiwi', 'Jl. Mawar No.8', 'Sistem Informasi'),
+    -> ('23015', 'Rizal Maulana', 'Jl. Sakura No.11', 'Teknik Komputer');
+Query OK, 15 rows affected (0.006 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [tugas]> INSERT INTO peminjaman (id_buku, id_mahasiswa, tanggal_pinjam, tanggal_kembali) VALUES
+    -> (1, 2, '2025-11-01', '2025-11-08'),
+    -> (3, 1, '2025-11-02', '2025-11-09'),
+    -> (5, 4, '2025-11-03', '2025-11-10'),
+    -> (7, 3, '2025-11-03', '2025-11-10'),
+    -> (2, 5, '2025-11-04', '2025-11-11'),
+    -> (9, 6, '2025-11-05', '2025-11-12'),
+    -> (4, 7, '2025-11-06', '2025-11-13'),
+    -> (8, 8, '2025-11-07', '2025-11-14'),
+    -> (10, 9, '2025-11-07', '2025-11-15'),
+    -> (6, 10, '2025-11-08', '2025-11-16'),
+    -> (11, 11, '2025-11-08', '2025-11-17'),
+    -> (12, 12, '2025-11-09', '2025-11-18'),
+    -> (13, 13, '2025-11-09', '2025-11-18'),
+    -> (14, 14, '2025-11-10', '2025-11-19'),
+    -> (15, 15, '2025-11-10', '2025-11-20');
+Query OK, 15 rows affected (0.012 sec)
+Records: 15  Duplicates: 0  Warnings: 0
+
+MariaDB [tugas]> SELECT
+    ->     p.id_peminjaman,
+    ->     m.nama_lengkap AS nama_mahasiswa,
+    ->     b.nama_buku,
+    ->     p.tanggal_pinjam,
+    ->     p.tanggal_kembali
+    -> FROM peminjaman p
+    -> JOIN mahasiswa m ON p.id_mahasiswa = m.id_mahasiswa
+    -> JOIN buku b ON p.id_buku = b.id_buku;
++---------------+----------------+-------------------------+----------------+-----------------+
+| id_peminjaman | nama_mahasiswa | nama_buku               | tanggal_pinjam | tanggal_kembali |
++---------------+----------------+-------------------------+----------------+-----------------+
+|             1 | Alan Fahrurozy | Laskar Pelangi          | 2025-11-01     | 2025-11-08      |
+|             2 | Maya Putri     | Bumi Manusia            | 2025-11-02     | 2025-11-09      |
+|             3 | Siti Rahma     | Pulang                  | 2025-11-03     | 2025-11-10      |
+|             4 | Rizky Hidayat  | Cinta Brontosaurus      | 2025-11-03     | 2025-11-10      |
+|             5 | Budi Santoso   | Negeri 5 Menara         | 2025-11-04     | 2025-11-11      |
+|             6 | Dewi Lestari   | Hujan                   | 2025-11-05     | 2025-11-12      |
+|             7 | Fajar Pratama  | Ayat-Ayat Cinta         | 2025-11-06     | 2025-11-13      |
+|             8 | Rina Wulandari | Manusia Setengah Salmon | 2025-11-07     | 2025-11-14      |
+|             9 | Yuda Saputra   | Perahu Kertas           | 2025-11-07     | 2025-11-15      |
+|            10 | Putri Amelia   | Rindu                   | 2025-11-08     | 2025-11-16      |
+|            11 | Rafi Hidayat   | Cantik Itu Luka         | 2025-11-08     | 2025-11-17      |
+|            12 | Andi Kurniawan | Sang Pemimpi            | 2025-11-09     | 2025-11-18      |
+|            13 | Nisa Aulia     | Bulan                   | 2025-11-09     | 2025-11-18      |
+|            14 | Fani Pratiwi   | Orang-orang Biasa       | 2025-11-10     | 2025-11-19      |
+|            15 | Rizal Maulana  | Rectoverso              | 2025-11-10     | 2025-11-20      |
++---------------+----------------+-------------------------+----------------+-----------------+
+15 rows in set (0.001 sec)
+
+MariaDB [tugas]>
