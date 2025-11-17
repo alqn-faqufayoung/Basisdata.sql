@@ -66,6 +66,7 @@ Proyek ini dibuat untuk:
 ## 👤 Pembuat
 
 **Alan Alvito Fahrurozy**
+NIM **D0224525**
 Mahasiswa **Universitas Sulawesi Barat**
 Program Studi **Teknik Informatika**
 *Proyek ini dibuat untuk memenuhi tugas mata kuliah Basis Data*
